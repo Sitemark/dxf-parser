@@ -22,6 +22,7 @@ import Text from './entities/text.js';
 
 import log from 'loglevel';
 import IGeometry, { EntityName, IEntity, IPoint } from './entities/geomtry.js';
+import { fastLineSplit } from './ParseHelpers.js';
 
 //log.setLevel('trace');
 //log.setLevel('debug');
@@ -215,7 +216,7 @@ export default class DxfParser {
 	private _parse(dxfString: string) {
 		const dxf = {} as IDxf;
 		let lastHandle = 0;
-		const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g);
+		const dxfLinesArray = fastLineSplit(dxfString);
 
 		const scanner = new DxfArrayScanner(dxfLinesArray);
 		if (!scanner.hasNext()) throw Error('Empty file');

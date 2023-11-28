@@ -141,3 +141,10 @@ export function checkCommonEntityProperties(entity: IEntity, curr:IGroup, scanne
 	}
 	return true;
 }
+
+/**
+ * Split a string into an array
+ */
+export function fastLineSplit(text: string) {
+	return text.split("\r\n").join("\n").split("\r").join("\n").split("\n");
+}
